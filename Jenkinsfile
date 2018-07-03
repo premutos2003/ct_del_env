@@ -18,5 +18,11 @@ node {
             terraform destroy  -force -var env=${ENV}  -var region=${REGION} -force  -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY}
            '''
         }
+        stage("Remove from DB") {
+
+                    sh '''
+                        curl -X POST -d env=${ENV} -d region=${REGION} host.docker.internal:3000/remove_env/delete
+                   '''
+                }
 
 }
