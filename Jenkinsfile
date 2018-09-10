@@ -17,7 +17,7 @@ node {
         stage("Remove from DB") {
 
                     sh '''
-                        curl -X POST -H 'content-type: application/json' -d {"env":${ENV},"region":${REGION}} host.docker.internal:3000/envs/delete
+                        curl -X POST -d env=${ENV} -d region=${REGION} host.docker.internal:3000/envs/delete
                    '''
                 }
 
